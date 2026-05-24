@@ -1,13 +1,10 @@
 import { avg, avgScore, modeValue, modeValueArr, avgTimeStr } from './scoreUtils';
 
-// ─── Slice entries by week ────────────────────────────────────────────────────
 export const getWeekEntries = (entries, week) => {
-  // week: 1, 2, or 3
   const start = (week - 1) * 7;
   return entries.slice(start, start + 7);
 };
 
-// ─── Build Week/Final Summary ─────────────────────────────────────────────────
 export const buildWeekSummary = (entries, week) => {
   const slice = week === 'all' ? entries : getWeekEntries(entries, week);
   if (!slice.length) return null;
@@ -22,6 +19,7 @@ export const buildWeekSummary = (entries, week) => {
   const avgBreakfastTime = avgTimeStr(slice, 'breakfastTime');
   const avgLunchTime     = avgTimeStr(slice, 'lunchTime');
   const avgDinnerTime    = avgTimeStr(slice, 'dinnerTime');
+
   // Meal timing consistency: % of days where all logged meal times are within normal windows
   const timingOnTimeDays = slice.filter((e) => {
     const tH = (t) => (t ? Number(t.split(':')[0]) : null);
@@ -32,7 +30,6 @@ export const buildWeekSummary = (entries, week) => {
   }).length;
   const mealTimingConsistency = slice.length ? Math.round((timingOnTimeDays / slice.length) * 100) : 0;
 
-  // Eating routine
   const eatingRoutineFollowedDays  = slice.filter(e => e.followedEatingRoutineToday === 'Yes').length;
   const eatingRoutinePartialDays   = slice.filter(e => e.followedEatingRoutineToday === 'Partially').length;
   const eatingRoutineFlexibleDays  = slice.filter(e => e.followedEatingRoutineToday === 'No').length;
@@ -79,7 +76,6 @@ export const buildWeekSummary = (entries, week) => {
   };
 };
 
-// ─── Pattern Story (human-language summary) ───────────────────────────────────
 export const generatePatternStory = (entries) => {
   if (!entries || entries.length < 3) {
     return 'Keep checking in. Your pattern story will appear once you have a few more entries.';
@@ -87,14 +83,12 @@ export const generatePatternStory = (entries) => {
 
   const parts = [];
 
-  // Sleep vs focus
   const highSleepDays = entries.filter((e) => Number(e.sleepDuration) >= 7);
   if (highSleepDays.length >= 2) {
     const avgFocusHigh = highSleepDays.reduce((a, e) => a + Number(e.focusLevel), 0) / highSleepDays.length;
     parts.push(`Your focus tended to be better on days when you slept 7 or more hours (average focus: ${avgFocusHigh.toFixed(1)}/10).`);
   }
 
-  // Meal timing vs stress
   const lateNightDays = entries.filter((e) => e.lateNightEating);
   if (lateNightDays.length >= 2) {
     const avgStressLate = lateNightDays.reduce((a, e) => a + Number(e.stressLevel), 0) / lateNightDays.length;
@@ -117,21 +111,18 @@ export const generatePatternStory = (entries) => {
     }
   }
 
-  // Sleep quality vs focus
   const poorSleepDays = entries.filter((e) => e.sleepQuality === 'Light / disturbed' || e.sleepQuality === 'Very poor');
   if (poorSleepDays.length >= 2) {
     const avgFocusPoor = poorSleepDays.reduce((a, e) => a + Number(e.focusLevel), 0) / poorSleepDays.length;
     parts.push(`On the ${poorSleepDays.length} days you reported disturbed or poor sleep, your average focus was ${avgFocusPoor.toFixed(1)}/10. Sleep quality, not just duration, shapes how you feel.`);
   }
 
-  // Skipped meals
   const skipped = entries.filter((e) => !e.breakfast || !e.lunch || !e.dinner);
   if (skipped.length > 0) {
     const pct = Math.round((skipped.length / entries.length) * 100);
     parts.push(`You skipped at least one meal on ${skipped.length} of ${entries.length} days (${pct}% of the time), often on higher-stress days.`);
   }
 
-  // Best day
   const best = entries.reduce((b, e) => (!b || e.routineScore > b.routineScore ? e : b), null);
   if (best) {
     const reasons = [];
@@ -142,7 +133,7 @@ export const generatePatternStory = (entries) => {
     parts.push(`Your best routine day so far was ${best.date}${reasons.length ? `. You ${reasons.join(', ')}` : ''}.`);
   }
 
-  // Most common trigger (handles both new array and legacy string fields)
+  // Handles both new array fields and legacy single-string fields
   const triggers = entries.flatMap((e) =>
     Array.isArray(e.triggersToday) ? e.triggersToday : (e.trigger ? [e.trigger] : [])
   ).filter((t) => t && t !== 'Other');
@@ -153,7 +144,6 @@ export const generatePatternStory = (entries) => {
     if (top) parts.push(`Your most common trigger was "${top[0]}" (appeared ${top[1]} time${top[1] > 1 ? 's' : ''}).`);
   }
 
-  // Suggestion
   const avgW = entries.reduce((a, e) => a + Number(e.waterGlasses), 0) / entries.length;
   const avgAct = entries.reduce((a, e) => a + Number(e.activityMinutes), 0) / entries.length;
   const suggestions = [];
@@ -167,7 +157,6 @@ export const generatePatternStory = (entries) => {
     parts.push('You are building real consistency. Keep one small promise each day and watch it compound.');
   }
 
-  // Eating routine pattern
   const followedDays   = entries.filter(e => e.followedEatingRoutineToday === 'Yes').length;
   const partialDays    = entries.filter(e => e.followedEatingRoutineToday === 'Partially').length;
   const flexibleDays   = entries.filter(e => e.followedEatingRoutineToday === 'No').length;
@@ -192,7 +181,6 @@ export const generatePatternStory = (entries) => {
   return parts.join(' ');
 };
 
-// ─── Improvement Suggestion ───────────────────────────────────────────────────
 export const generateImprovementSuggestion = (summary) => {
   if (!summary) return '';
   const s = [];

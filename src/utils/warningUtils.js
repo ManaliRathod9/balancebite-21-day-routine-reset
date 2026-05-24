@@ -1,7 +1,3 @@
-// ─── Smart Habit Warning Generator ──────────────────────────────────────────
-// Returns array of warning objects { id, severity, title, cause, cons, fix, pros }
-// severity: 'red' | 'yellow' | 'green'
-
 export const generateWarnings = (entry, profile = {}) => {
   if (!entry) return [];
   const warnings = [];
@@ -25,7 +21,6 @@ export const generateWarnings = (entry, profile = {}) => {
   const work = Number(workHours) || 0;
   const skippedMeals = !breakfast || !lunch || !dinner;
 
-  // High stress + overeating
   if (stress >= 8 && overeating) {
     warnings.push({
       id: 'stress-overeating',
@@ -38,7 +33,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Skipped breakfast
   if (breakfast === false) {
     warnings.push({
       id: 'skipped-breakfast',
@@ -51,7 +45,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Low sleep
   if (sleep > 0 && sleep < 6) {
     warnings.push({
       id: 'low-sleep',
@@ -64,7 +57,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Low water
   if (water > 0 && water < 4) {
     warnings.push({
       id: 'low-water',
@@ -77,7 +69,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // High stress + no movement
   if (stress >= 7 && activity === 0) {
     warnings.push({
       id: 'stress-no-movement',
@@ -90,7 +81,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Late wake-up (after 10 AM)
   if (wakeUpTime) {
     const [h] = wakeUpTime.split(':').map(Number);
     if (h >= 10) {
@@ -106,7 +96,6 @@ export const generateWarnings = (entry, profile = {}) => {
     }
   }
 
-  // Long job-search/work with skipped meals
   if (work >= 5 && skippedMeals) {
     warnings.push({
       id: 'long-work-skipped-meals',
@@ -119,7 +108,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Rejections + high stress
   if (rejectionEvent && stress >= 7) {
     warnings.push({
       id: 'rejection-stress',
@@ -132,7 +120,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Late breakfast (after 11 AM)
   if (breakfast === true && bfH !== null && bfH >= 11) {
     warnings.push({
       id: 'late-breakfast',
@@ -145,7 +132,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Skipped lunch
   if (lunch === false) {
     warnings.push({
       id: 'skipped-lunch',
@@ -158,7 +144,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Late lunch (after 3 PM)
   if (lunch === true && lnH !== null && lnH >= 15) {
     warnings.push({
       id: 'late-lunch',
@@ -171,7 +156,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Late dinner (after 10 PM)
   if (dinner === true && dnH !== null && dnH >= 22) {
     warnings.push({
       id: 'late-dinner',
@@ -184,7 +168,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Late-night eating
   if (lateNightEating === true) {
     warnings.push({
       id: 'late-night-eating',
@@ -197,7 +180,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // High stress (>= 8) + late-night eating
   if (stress >= 8 && lateNightEating === true) {
     warnings.push({
       id: 'stress-late-eating',
@@ -210,7 +192,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Good sleep duration but poor sleep quality
   if (sleep >= 7 && (sleepQuality === 'Light / disturbed' || sleepQuality === 'Very poor')) {
     warnings.push({
       id: 'poor-sleep-quality',
@@ -223,7 +204,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Frequent wake-ups during sleep
   if (wakeDuringSleep === 'Yes, more than 3 times') {
     warnings.push({
       id: 'frequent-wakeups',
@@ -236,9 +216,8 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // ── Part 3: Eating routine yellow warnings ──────────────────────────────────
+  // Eating routine warnings
 
-  // IF + fasting is not comfortable
   if (eatingRoutineType === 'I follow intermittent fasting' && fastingComfort && fastingComfort !== 'Yes') {
     warnings.push({
       id: 'fasting-discomfort',
@@ -251,7 +230,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // No fixed eating time + late-night eating
   if (eatingRoutineType === 'I do not have a fixed eating time' && lateNightEating) {
     warnings.push({
       id: 'irregular-eating-pattern',
@@ -264,7 +242,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Stress-driven eating
   if (eatingFeltLike === 'Stress-driven') {
     warnings.push({
       id: 'stress-driven-eating',
@@ -277,7 +254,6 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // Fixed window or IF + didn't follow today
   if (
     (eatingRoutineType === 'I eat within a fixed eating window' ||
      eatingRoutineType === 'I follow intermittent fasting') &&
@@ -294,7 +270,7 @@ export const generateWarnings = (entry, profile = {}) => {
     });
   }
 
-  // ── Part 4: Supportive green messages for flexible eating days ──────────────
+  // Supportive green messages for flexible eating days
 
   if (followedEatingRoutineToday === 'No' || followedEatingRoutineToday === 'Partially') {
     if (eatingRoutineChangedReason === 'Cheat day') {
@@ -382,7 +358,6 @@ export const generateWarnings = (entry, profile = {}) => {
     }
   }
 
-  // Great day (no red or yellow warnings)
   if (warnings.length === 0) {
     warnings.push({
       id: 'great-day',

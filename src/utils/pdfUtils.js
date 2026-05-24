@@ -135,14 +135,12 @@ export const generatePDF = ({ profile, entries, challenge, letter, badges }) => 
     unique.forEach((b) => {
       const def = getBadgeDef(b.id);
       if (y > 268) { doc.addPage(); y = 20; }
-      // Bullet + badge title
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(9.5);
       doc.setTextColor(60, 100, 60);
       const titleLines = doc.splitTextToSize('* ' + (def.label || b.id), 178);
       doc.text(titleLines, 15, y);
       y += titleLines.length * 5;
-      // Description indented
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(8.5);
       doc.setTextColor(80, 80, 80);

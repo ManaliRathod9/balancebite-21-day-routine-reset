@@ -28,7 +28,6 @@ const TRIGGERS  = ['Stress', 'Job search pressure', 'Study pressure', 'Work pres
 const PROMISES  = ['Eat breakfast', 'Drink 5 glasses of water', 'Wake up 30 minutes earlier', 'Walk for 10 minutes', 'Apply/study/work for 1 focused hour', 'Sleep 30 minutes earlier', 'Avoid stress eating using a 5-minute pause', 'Take one proper meal without phone', 'Reduce late-night screen time', "Write tomorrow's plan before sleeping", 'Other'];
 const MOODS     = ['Calm', 'Anxious', 'Sad', 'Motivated', 'Tired', 'Stressed', 'Happy', 'Low', 'Restless'];
 
-/* ── Sub-components ── */
 const FormSection = ({ title, icon, children, accent = '#52664A' }) => (
   <div className="form-section" style={{ marginBottom: '1.125rem' }}>
     <div className="form-section-title" style={{ color: accent, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -103,7 +102,6 @@ const ChipGroup = ({ label, value = [], onChange, options, single = false }) => 
   </div>
 );
 
-/* ── Main page ── */
 export default function DailyCheckIn() {
   const navigate      = useNavigate();
   const profile       = loadProfile();
@@ -134,7 +132,7 @@ export default function DailyCheckIn() {
     activityMinutes: existing.activityMinutes || 0, workHours: existing.workHours || 0,
     appsSubmitted: existing.appsSubmitted || '', rejectionEvent: existing.rejectionEvent ?? null,
     symptoms: existing.symptoms || [], notes: existing.notes || '',
-    // Multi-select emotional check-in (backward compat: convert old strings to arrays)
+    // Backward compat: convert legacy single-string fields to arrays
     todayFeelings: Array.isArray(existing.todayFeelings) ? existing.todayFeelings
       : (existing.todayFeeling ? [existing.todayFeeling] : []),
     todayFeelingOther: existing.todayFeelingOther || '',
@@ -180,7 +178,6 @@ export default function DailyCheckIn() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  /* ── Result screen ── */
   if (result) {
     return (
       <div className="page-wrapper fade-in">
@@ -273,7 +270,6 @@ export default function DailyCheckIn() {
     );
   }
 
-  /* ── Form ── */
   return (
     <div className="page-wrapper fade-in">
       <div style={{ marginBottom: '2rem' }}>
@@ -303,7 +299,6 @@ export default function DailyCheckIn() {
       )}
 
       <form onSubmit={handleSubmit}>
-        {/* Sleep */}
         <FormSection title="Sleep" icon="😴">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <div>
@@ -332,9 +327,7 @@ export default function DailyCheckIn() {
             options={['Deep', 'Okay', 'Light / disturbed', 'Very poor']} single />
         </FormSection>
 
-        {/* Meals */}
         <FormSection title="Meals and Timing" icon="🍽️" accent="#A85530">
-          {/* Breakfast */}
           <YesNo label="Ate breakfast?" value={form.breakfast} onChange={v => set('breakfast', v)} />
           {form.breakfast === true && (
             <div>
@@ -343,7 +336,6 @@ export default function DailyCheckIn() {
             </div>
           )}
 
-          {/* Lunch */}
           <YesNo label="Ate lunch?" value={form.lunch} onChange={v => set('lunch', v)} />
           {form.lunch === true && (
             <div>
@@ -352,7 +344,6 @@ export default function DailyCheckIn() {
             </div>
           )}
 
-          {/* Dinner */}
           <YesNo label="Ate dinner?" value={form.dinner} onChange={v => set('dinner', v)} />
           {form.dinner === true && (
             <div>
@@ -361,7 +352,6 @@ export default function DailyCheckIn() {
             </div>
           )}
 
-          {/* Snack + last meal */}
           <div>
             <label className="label">
               Snack time
@@ -374,13 +364,11 @@ export default function DailyCheckIn() {
             <input type="time" value={form.lastMealTime} onChange={e => set('lastMealTime', e.target.value)} className="input-field" />
           </div>
 
-          {/* Late-night eating + overeating */}
           <YesNo label="Did you eat anything after 10 PM?" value={form.lateNightEating} onChange={v => set('lateNightEating', v)} />
           <YesNo label="Overeating today?" value={form.overeating} onChange={v => set('overeating', v)} />
           <StressEatingPause onResponse={r => set('stressPauseResponse', r)} />
         </FormSection>
 
-        {/* Today's eating pattern */}
         <FormSection title="Today's Eating Pattern" icon="🍽" accent="#B8862A">
           <ChipGroup
             label="Did you follow your eating routine today?"
@@ -437,7 +425,6 @@ export default function DailyCheckIn() {
           )}
         </FormSection>
 
-        {/* Stress & focus */}
         <FormSection title="Mood &amp; Energy" icon="🧠" accent="#6F519E">
           <SliderInput label="Stress level" value={form.stressLevel} onChange={v => set('stressLevel', v)}
             min={1} max={10} leftLabel="1 · Very calm" rightLabel="10 · Overwhelmed" accentColor="#C05E58" />
@@ -452,7 +439,6 @@ export default function DailyCheckIn() {
           </div>
         </FormSection>
 
-        {/* Water & activity */}
         <FormSection title="Water &amp; Movement" icon="💧">
           <SliderInput label="Water glasses today" value={form.waterGlasses} onChange={v => set('waterGlasses', v)}
             min={0} max={15} leftLabel="0" rightLabel="15+" />
@@ -460,7 +446,6 @@ export default function DailyCheckIn() {
             min={0} max={120} leftLabel="0 min" rightLabel="2 hrs+" />
         </FormSection>
 
-        {/* Work */}
         <FormSection title="Work / Study / Job Search" icon="💼" accent="#3A5570">
           <SliderInput label="Hours spent today" value={form.workHours} onChange={v => set('workHours', v)}
             min={0} max={16} leftLabel="0 hrs" rightLabel="16 hrs" accentColor="#3A5570" />
@@ -473,16 +458,13 @@ export default function DailyCheckIn() {
           <FemaleWellnessNotes data={form.femaleWellness} onChange={v => set('femaleWellness', v)} />
         )}
 
-        {/* Symptoms */}
         <FormSection title="Symptoms Today" icon="🔍">
           <ChipGroup label="Select any symptoms you noticed today" value={form.symptoms}
             onChange={v => set('symptoms', v)} options={SYMPTOMS} />
         </FormSection>
 
-        {/* Human perspective */}
         <FormSection title="How are you really doing?" icon="💜" accent="#6F519E">
 
-          {/* Today I feel — multi-select */}
           <div>
             <ChipGroup
               label="Today I feel… (choose all that apply)"
@@ -502,7 +484,6 @@ export default function DailyCheckIn() {
             )}
           </div>
 
-          {/* Triggers — multi-select */}
           <div>
             <ChipGroup
               label="What triggered this today? (choose all that apply)"
@@ -522,7 +503,6 @@ export default function DailyCheckIn() {
             )}
           </div>
 
-          {/* Promises — multi-select */}
           <div>
             <label className="label">One small promise for tomorrow</label>
             <p style={{ fontSize: '0.775rem', color: '#B0A89E', marginTop: '-0.25rem', marginBottom: '0.5rem' }}>
@@ -555,7 +535,6 @@ export default function DailyCheckIn() {
           </div>
         </FormSection>
 
-        {/* Notes */}
         <FormSection title="Notes" icon="📝">
           <div>
             <label className="label">Anything else?
@@ -567,7 +546,6 @@ export default function DailyCheckIn() {
           </div>
         </FormSection>
 
-        {/* Microcopy above save */}
         <div style={{ textAlign: 'center', background: '#F3F5F0', border: '1px solid #C8D5C0', borderRadius: '1rem', padding: '0.875rem', marginBottom: '1.25rem' }}>
           <p style={{ fontSize: '0.8125rem', color: '#52664A', fontStyle: 'italic' }}>
             "You showed up today. That already counts."

@@ -130,7 +130,6 @@ export default function Reports() {
   return (
     <div className="page-wrapper fade-in">
 
-      {/* Header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <h1 className="section-title">Reports</h1>
@@ -147,7 +146,6 @@ export default function Reports() {
         </div>
       </div>
 
-      {/* Upload */}
       <div style={{
         background: '#EEF4FA', border: '1px solid #B8D0E8',
         borderRadius: '1.25rem', padding: '1rem 1.25rem',
@@ -174,10 +172,8 @@ export default function Reports() {
         }}>{uploadMsg}</div>
       )}
 
-      {/* Day-21 letter prompt */}
       {entries.length >= 21 && <div style={{ marginBottom: '1.25rem' }}><LetterToSelf day={21} /></div>}
 
-      {/* Day-1 letter display */}
       {letter?.day1 && (
         <div style={{ background: '#F7F4FB', border: '1px solid #DCCFEF', borderRadius: '1.5rem', padding: '1.5rem', marginBottom: '1.25rem' }}>
           <p style={{ fontSize: '0.7rem', fontWeight: 700, color: '#6F519E', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.5rem' }}>
@@ -251,7 +247,6 @@ export default function Reports() {
             </div>
           )}
 
-          {/* Disclaimer */}
           <div style={{
             background: '#FFF9F0', border: '1px solid #F4D9A8',
             borderRadius: '1rem', padding: '0.875rem 1rem',
@@ -266,7 +261,6 @@ export default function Reports() {
         </>
       )}
 
-      {/* Challenge complete */}
       {entries.length >= 21 && (
         <div style={{
           background: 'linear-gradient(145deg, #FFF9F0 0%, #FAE6D8 100%)',

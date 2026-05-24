@@ -1,6 +1,3 @@
-// ─── Lifestyle Insight Generator (Rule-based, no AI) ─────────────────────────
-// Returns array of insight objects { title, pattern, why, today, icon }
-
 export const generateSymptomInsights = (symptoms, profile) => {
   const s = symptoms || [];
   const p = profile || {};
@@ -9,7 +6,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
   const has = (...items) => items.every((item) => s.includes(item));
   const hasAny = (...items) => items.some((item) => s.includes(item));
 
-  // Low concentration + skipped meals + poor sleep
   if (has('Low concentration', 'Skipping meals', 'Poor sleep')) {
     insights.push({
       title: 'Focus & Meal Connection',
@@ -20,7 +16,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Stress + overeating
   if (has('Stress', 'Overeating')) {
     insights.push({
       title: 'Stress & Eating Pattern',
@@ -31,7 +26,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Low energy + low water
   if (hasAny('Low energy', 'Tiredness') && hasAny('Bloating', 'Body heaviness')) {
     insights.push({
       title: 'Energy & Hydration',
@@ -42,7 +36,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Job-search burnout + skipped meals
   if (has('Job-search burnout', 'Skipping meals')) {
     insights.push({
       title: 'Job-Search & Meal Timing',
@@ -53,7 +46,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Study/work burnout
   if (has('Study/work burnout', 'No motivation')) {
     insights.push({
       title: 'Study/Work Burnout',
@@ -64,7 +56,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Mood swings + poor sleep
   if (has('Mood swings', 'Poor sleep')) {
     insights.push({
       title: 'Mood & Sleep Connection',
@@ -75,7 +66,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Anxiety + no motivation
   if (has('Anxiety feeling', 'No motivation')) {
     insights.push({
       title: 'Anxiety & Motivation',
@@ -86,7 +76,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Feeling guilty after eating
   if (s.includes('Feeling guilty after eating')) {
     insights.push({
       title: 'Eating & Emotional Guilt',
@@ -97,7 +86,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Irregular wake/sleep times
   if (has('Irregular wake-up time', 'Irregular sleep time')) {
     insights.push({
       title: 'Irregular Sleep Schedule',
@@ -108,7 +96,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Too much screen time
   if (s.includes('Too much screen time')) {
     insights.push({
       title: 'Screen Time & Rest',
@@ -119,7 +106,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Feeling lost or unproductive
   if (s.includes('Feeling lost or unproductive')) {
     insights.push({
       title: 'Feeling Lost',
@@ -130,7 +116,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Profile-based: skips meals + overeat
   if (p.skipMeals === 'yes' && p.overeatsWhenStressed === 'yes') {
     insights.push({
       title: 'Meal Skipping & Stress Eating Pattern',
@@ -141,7 +126,6 @@ export const generateSymptomInsights = (symptoms, profile) => {
     });
   }
 
-  // Generic if no insights
   if (insights.length === 0) {
     insights.push({
       title: 'Good Awareness',
@@ -155,15 +139,14 @@ export const generateSymptomInsights = (symptoms, profile) => {
   return insights;
 };
 
-// ─── Emotional Insight Generator ─────────────────────────────────────────────
 export const generateEmotionalInsight = (entry) => {
   // Support both new array fields and legacy single-string fields
   const feelings = Array.isArray(entry?.todayFeelings) ? entry.todayFeelings
     : (entry?.todayFeeling ? [entry.todayFeeling] : []);
   const triggers = Array.isArray(entry?.triggersToday) ? entry.triggersToday
     : (entry?.trigger ? [entry.trigger] : []);
-  const feeling = feelings[0]; // primary feeling for insight
-  const trigger = triggers[0]; // primary trigger
+  const feeling = feelings[0];
+  const trigger = triggers[0];
   const stress = Number(entry?.stressLevel) || 0;
 
   if (!feeling) return null;
@@ -195,13 +178,11 @@ export const generateEmotionalInsight = (entry) => {
   return insight;
 };
 
-// ─── Dashboard Insights ───────────────────────────────────────────────────────
 export const generateDashboardInsights = (entries) => {
   if (!entries || entries.length < 3) return [];
 
   const insights = [];
 
-  // Sleep vs Focus correlation
   const highSleep = entries.filter((e) => Number(e.sleepDuration) >= 7);
   const lowSleep = entries.filter((e) => Number(e.sleepDuration) < 6);
   if (highSleep.length >= 2 && lowSleep.length >= 1) {
@@ -212,7 +193,6 @@ export const generateDashboardInsights = (entries) => {
     }
   }
 
-  // Overeating on high-stress days
   const highStress = entries.filter((e) => Number(e.stressLevel) >= 7);
   if (highStress.length >= 2) {
     const overeatRate = highStress.filter((e) => e.overeating).length / highStress.length;
@@ -221,7 +201,6 @@ export const generateDashboardInsights = (entries) => {
     }
   }
 
-  // Skipped meals + low focus
   const skippedDays = entries.filter((e) => !e.breakfast || !e.lunch || !e.dinner);
   if (skippedDays.length >= 2) {
     const avgFocusSkipped = skippedDays.reduce((a, e) => a + Number(e.focusLevel), 0) / skippedDays.length;
@@ -230,7 +209,7 @@ export const generateDashboardInsights = (entries) => {
     }
   }
 
-  // Most common trigger (handles both array and legacy string fields)
+  // Handles both array fields (new) and legacy single-string fields (old)
   const allTriggers = entries.flatMap((e) =>
     Array.isArray(e.triggersToday) ? e.triggersToday : (e.trigger ? [e.trigger] : [])
   ).filter((t) => t && t !== 'Other');
@@ -243,7 +222,6 @@ export const generateDashboardInsights = (entries) => {
     }
   }
 
-  // Water improvement
   const avgWater = entries.reduce((a, e) => a + Number(e.waterGlasses), 0) / entries.length;
   if (avgWater >= 6) {
     insights.push({ icon: '💧', text: `Your strongest reset habit so far is staying hydrated, averaging ${avgWater.toFixed(1)} glasses a day. Keep it going.` });

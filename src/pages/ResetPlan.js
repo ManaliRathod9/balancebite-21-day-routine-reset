@@ -106,7 +106,6 @@ export default function ResetPlan() {
   return (
     <div className="page-wrapper fade-in">
 
-      {/* Header */}
       <div style={{ marginBottom: '2.5rem' }}>
         <div className="step-pill">Step 3 of 3</div>
         <h1 className="section-title">Your 21-Day Reset Plan</h1>
@@ -115,7 +114,6 @@ export default function ResetPlan() {
         </p>
       </div>
 
-      {/* Goal card */}
       <div style={{
         background: plan.color, border: `1px solid ${plan.border}`,
         borderRadius: '1.5rem', padding: '1.75rem',
@@ -136,7 +134,6 @@ export default function ResetPlan() {
         <p style={{ fontSize: '0.875rem', color: '#5C5249', lineHeight: 1.7 }}>{plan.summary}</p>
       </div>
 
-      {/* Challenge progress */}
       {challenge && (
         <div className="card" style={{ marginBottom: '1.25rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -167,7 +164,6 @@ export default function ResetPlan() {
         </div>
       )}
 
-      {/* Daily goals */}
       <div className="card" style={{ marginBottom: '1.25rem' }}>
         <p style={{ fontSize: '0.7rem', fontWeight: 700, color: '#9A8E84', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '1rem' }}>
           Your daily focus goals
@@ -190,7 +186,6 @@ export default function ResetPlan() {
         </div>
       </div>
 
-      {/* Human message */}
       <div style={{
         background: 'linear-gradient(145deg, #3F503A 0%, #2E3B2A 100%)',
         borderRadius: '1.5rem', padding: '2rem',
@@ -209,7 +204,6 @@ export default function ResetPlan() {
         </p>
       </div>
 
-      {/* Profile summary */}
       {profile && (
         <div className="card-warm" style={{ marginBottom: '1.75rem' }}>
           <p style={{ fontSize: '0.7rem', fontWeight: 700, color: '#9A8E84', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.75rem' }}>

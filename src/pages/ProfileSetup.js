@@ -14,7 +14,6 @@ const ROUTINE_BREAKERS = [
   'No fixed schedule', "I don't know",
 ];
 
-/* ── Sub-components ── */
 const Section = ({ num, title, children }) => (
   <div className="form-section">
     <div className="form-section-title">
@@ -118,7 +117,6 @@ export default function ProfileSetup() {
   return (
     <div className="page-wrapper fade-in">
 
-      {/* Page header */}
       <div style={{ marginBottom: '2.5rem' }}>
         <div className="step-pill">Step 1 of 3</div>
         <h1 className="section-title">A few things about you</h1>
@@ -129,7 +127,6 @@ export default function ProfileSetup() {
 
       <form onSubmit={handleSubmit}>
 
-        {/* ── Basic info ── */}
         <Section num="01" title="About you">
           <Field label="Your name">
             <input type="text" value={form.name} onChange={e => set('name', e.target.value)}
@@ -156,7 +153,6 @@ export default function ProfileSetup() {
             options={['Female', 'Male', 'General / Prefer not to say']} />
         </Section>
 
-        {/* ── Goal ── */}
         <Section num="02" title="Your main goal for the next 21 days">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.625rem' }}>
             {GOALS.map(g => (
@@ -176,7 +172,6 @@ export default function ProfileSetup() {
           </div>
         </Section>
 
-        {/* ── Sleep & meals ── */}
         <Section num="03" title="Sleep &amp; meals">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <Field label="Wake-up time">
@@ -200,7 +195,6 @@ export default function ProfileSetup() {
             onChange={v => set('overeatsWhenStressed', v)} options={['Yes', 'No']} />
         </Section>
 
-        {/* ── Water & activity ── */}
         <Section num="04" title="Water &amp; movement">
           <Field label="Glasses of water per day">
             <input type="number" min="0" max="20" value={form.waterGlasses}
@@ -214,7 +208,6 @@ export default function ProfileSetup() {
           </Field>
         </Section>
 
-        {/* ── Routine breakers ── */}
         <Section num="05" title="What usually breaks your routine?">
           <MultiChip label="Select all that apply"
             value={form.routineBreakers}
@@ -222,7 +215,6 @@ export default function ProfileSetup() {
             options={ROUTINE_BREAKERS} />
         </Section>
 
-        {/* ── Eating routine ── */}
         <Section num="06" title="Your eating routine">
           <ToggleGroup
             label="Do you follow any eating routine?"
@@ -237,7 +229,6 @@ export default function ProfileSetup() {
             ]}
           />
 
-          {/* Intermittent fasting fields */}
           {form.eatingRoutineType === 'I follow intermittent fasting' && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', paddingTop: '0.25rem' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
@@ -269,7 +260,6 @@ export default function ProfileSetup() {
             </div>
           )}
 
-          {/* Fixed eating window fields */}
           {form.eatingRoutineType === 'I eat within a fixed eating window' && (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', paddingTop: '0.25rem' }}>
               <Field label="Eating window starts">
@@ -283,7 +273,6 @@ export default function ProfileSetup() {
             </div>
           )}
 
-          {/* Regular meal times fields */}
           {form.eatingRoutineType === 'I try to eat at regular meal times' && (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', paddingTop: '0.25rem' }}>
               <Field label="Usual breakfast time">
@@ -301,7 +290,6 @@ export default function ProfileSetup() {
             </div>
           )}
 
-          {/* Gentle notes for flexible routines */}
           {(form.eatingRoutineType === 'I do not have a fixed eating time' ||
             form.eatingRoutineType === 'I am still figuring out my routine') && (
             <p style={{
@@ -315,7 +303,6 @@ export default function ProfileSetup() {
           )}
         </Section>
 
-        {/* Submit */}
         <div style={{ textAlign: 'center', paddingTop: '0.5rem', paddingBottom: '2rem' }}>
           <button type="submit" className="btn-primary" style={{ fontSize: '0.9375rem', padding: '0.875rem 2.25rem' }}>
             Save & Continue

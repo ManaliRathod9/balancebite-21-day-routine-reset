@@ -16,7 +16,6 @@ export default function RecoveryModeCard() {
       boxShadow: '0 2px 12px rgba(180,80,60,0.07)',
     }} className="fade-in">
 
-      {/* Header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem', marginBottom: '1rem' }}>
         <span style={{ fontSize: '1.75rem', flexShrink: 0 }}>🌧️</span>
         <div>
@@ -34,7 +33,6 @@ export default function RecoveryModeCard() {
         Three small, gentle steps are enough for now.
       </p>
 
-      {/* Steps */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', marginBottom: '1.25rem' }}>
         {STEPS.map(({ emoji, action, detail }, i) => (
           <div key={i} style={{

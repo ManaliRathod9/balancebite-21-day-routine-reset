@@ -32,10 +32,8 @@ export default function WelcomePage() {
   return (
     <div style={{ background: '#FAF8F5', minHeight: '100vh' }}>
 
-      {/* ─── Hero ─────────────────────────────────────────────────────────── */}
       <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '5rem', paddingBottom: '5rem' }}>
 
-        {/* Responsive two-column layout */}
         <style>{`
           .hero-layout { display: grid; grid-template-columns: 1fr; gap: 0; align-items: center; }
           .hero-right  { display: none; }
@@ -45,7 +43,6 @@ export default function WelcomePage() {
           }
         `}</style>
 
-        {/* Soft organic background blobs */}
         <div style={{
           position: 'absolute', top: '-80px', right: '-120px',
           width: '520px', height: '520px', borderRadius: '50%',
@@ -62,10 +59,8 @@ export default function WelcomePage() {
         <div style={{ maxWidth: 980, margin: '0 auto', padding: '0 1.5rem', position: 'relative' }}
           className="hero-layout">
 
-          {/* ── Left: headline + CTAs ── */}
           <div>
 
-            {/* Eyebrow label */}
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
               background: '#E4EAE0', borderRadius: '100px',
@@ -77,7 +72,6 @@ export default function WelcomePage() {
               </span>
             </div>
 
-            {/* Main heading */}
             <h1 style={{
               fontFamily: '"DM Serif Display", Georgia, serif',
               fontSize: 'clamp(2.5rem, 5vw, 3.75rem)',
@@ -92,7 +86,6 @@ export default function WelcomePage() {
               <em style={{ color: '#52664A', fontStyle: 'italic' }}>Rebuild your focus one small step at a time.</em>
             </h1>
 
-            {/* Human copy */}
             <p style={{
               fontSize: '1.05rem', color: '#6B5E55', lineHeight: 1.75,
               marginBottom: '2.25rem',
@@ -102,7 +95,6 @@ export default function WelcomePage() {
               BalanceBite helps you notice what is happening and rebuild one small step at a time.
             </p>
 
-            {/* CTAs */}
             <div style={{ display: 'flex', gap: '0.875rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1rem' }}>
               <button onClick={handleStart} className="btn-primary" style={{ fontSize: '0.9375rem', padding: '0.875rem 2rem' }}>
                 {profile ? 'Continue My Reset' : 'Start My 21-Day Reset'}
@@ -127,10 +119,8 @@ export default function WelcomePage() {
             )}
           </div>
 
-          {/* ── Right: Human lifestyle illustration ── */}
           <div className="hero-right" style={{ position: 'relative', height: '480px' }}>
 
-            {/* Warm ambient background glow */}
             <div style={{
               position: 'absolute', top: '50%', left: '50%',
               transform: 'translate(-50%, -50%)',
@@ -139,145 +129,99 @@ export default function WelcomePage() {
               pointerEvents: 'none',
             }} />
 
-            {/* Lifestyle illustration — person at desk, warm morning light */}
             <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '10px' }}>
               <svg width="290" height="345" viewBox="0 0 290 345" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-                {/* Window — warm light source, top left */}
+                {/* Window */}
                 <rect x="14" y="18" width="76" height="98" rx="8" fill="#FFF8E8" opacity="0.85" />
                 <line x1="52" y1="18" x2="52" y2="116" stroke="#EDD5A0" strokeWidth="1.5" opacity="0.45" />
                 <line x1="14" y1="67" x2="90" y2="67" stroke="#EDD5A0" strokeWidth="1.5" opacity="0.45" />
                 <rect x="14" y="18" width="76" height="98" rx="8" fill="none" stroke="#E0CC98" strokeWidth="1.5" opacity="0.35" />
-                {/* Warm light shaft */}
                 <path d="M90 18 L110 50 L110 116 L90 116" fill="#FFF3D6" opacity="0.25" />
 
-                {/* PLANT — right side of desk */}
-                {/* Pot */}
+                {/* PLANT */}
                 <path d="M224 250 L218 276 L248 276 L242 250 Z" fill="#C96B3F" />
                 <ellipse cx="233" cy="250" rx="14" ry="5" fill="#A85530" />
                 <ellipse cx="233" cy="276" rx="16" ry="5" fill="#A85530" opacity="0.6" />
-                {/* Soil top */}
                 <ellipse cx="233" cy="250" rx="11" ry="3.5" fill="#5A3A20" />
-                {/* Leaves */}
                 <path d="M233 247 Q216 228 208 210 Q222 221 233 239" fill="#52664A" />
                 <path d="M233 247 Q251 226 260 208 Q246 220 233 239" fill="#6B8260" />
                 <path d="M233 247 Q221 233 215 218 Q227 225 233 240" fill="#3F503A" opacity="0.8" />
                 <path d="M233 247 Q244 230 252 216 Q241 224 233 240" fill="#52664A" opacity="0.75" />
-                {/* Central stem */}
                 <path d="M233 247 Q233 236 233 222" stroke="#3F503A" strokeWidth="2" fill="none" strokeLinecap="round" />
 
-                {/* DESK surface */}
+                {/* DESK */}
                 <rect x="32" y="245" width="238" height="13" rx="5" fill="#9B7848" />
                 <rect x="37" y="257" width="230" height="5" rx="2" fill="#7A5A30" opacity="0.3" />
-                {/* Desk legs */}
                 <rect x="47" y="260" width="9" height="58" rx="4" fill="#8A6438" />
                 <rect x="239" y="260" width="9" height="58" rx="4" fill="#8A6438" />
-                {/* Leg cross bar */}
                 <rect x="47" y="298" width="201" height="5" rx="2.5" fill="#7A5A30" opacity="0.4" />
 
                 {/* CHAIR */}
-                {/* Chair back cushion */}
                 <rect x="114" y="175" width="62" height="68" rx="10" fill="#C8B898" />
                 <rect x="118" y="179" width="54" height="60" rx="8" fill="#BCA888" />
-                {/* Chair seat */}
                 <rect x="107" y="237" width="76" height="14" rx="7" fill="#B8A888" />
-                {/* Chair legs */}
                 <rect x="117" y="249" width="8" height="52" rx="3" fill="#9A8060" />
                 <rect x="165" y="249" width="8" height="52" rx="3" fill="#9A8060" />
 
                 {/* PERSON */}
-                {/* Legs — deep sage/olive trousers */}
                 <path d="M122 237 Q119 260 118 288" stroke="#4A5E40" strokeWidth="16" strokeLinecap="round" fill="none" />
                 <path d="M168 237 Q171 260 172 288" stroke="#4A5E40" strokeWidth="16" strokeLinecap="round" fill="none" />
-                {/* Shoes */}
                 <ellipse cx="117" cy="290" rx="12" ry="5.5" fill="#2A1A0A" />
                 <ellipse cx="173" cy="290" rx="12" ry="5.5" fill="#2A1A0A" />
-
-                {/* Torso — sage green knit top */}
                 <path d="M109 196 Q145 185 181 196 L176 238 Q145 245 114 238 Z" fill="#6B8260" />
-                {/* Subtle shirt detail */}
                 <path d="M135 196 Q145 190 155 196" stroke="#52664A" strokeWidth="1.5" fill="none" />
-
-                {/* Left arm — resting on desk, holding mug */}
                 <path d="M112 210 Q93 230 84 252" stroke="#C4906A" strokeWidth="12" strokeLinecap="round" fill="none" />
                 <ellipse cx="83" cy="254" rx="7" ry="5.5" fill="#C4906A" />
-
-                {/* Right arm — toward laptop */}
                 <path d="M178 210 Q197 228 202 248" stroke="#C4906A" strokeWidth="12" strokeLinecap="round" fill="none" />
                 <ellipse cx="202" cy="251" rx="7" ry="5.5" fill="#C4906A" />
-
-                {/* Neck */}
                 <rect x="138" y="182" width="14" height="17" rx="6" fill="#C4906A" />
-
-                {/* Head */}
                 <circle cx="145" cy="160" r="26" fill="#D4A070" />
-
-                {/* Hair — dark, swept back naturally */}
                 <path d="M119 157 Q121 131 145 127 Q169 131 171 157" fill="#2A1A0A" />
                 <path d="M119 157 Q117 146 119 135" stroke="#2A1A0A" strokeWidth="8" strokeLinecap="round" fill="none" />
                 <path d="M171 157 Q173 146 171 135" stroke="#2A1A0A" strokeWidth="8" strokeLinecap="round" fill="none" />
-                {/* Small hair highlight */}
                 <path d="M128 138 Q140 130 152 133" stroke="#3A2A10" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.4" />
-
-                {/* Face — calm, soft, looking at screen */}
                 <ellipse cx="136" cy="159" rx="3" ry="3.2" fill="#2A1A0A" />
                 <ellipse cx="154" cy="159" rx="3" ry="3.2" fill="#2A1A0A" />
-                {/* Tiny light reflections */}
                 <circle cx="137.5" cy="157.5" r="1" fill="#E8C898" opacity="0.6" />
                 <circle cx="155.5" cy="157.5" r="1" fill="#E8C898" opacity="0.6" />
-                {/* Soft smile */}
                 <path d="M139 170 Q145 174 151 170" stroke="#B07848" strokeWidth="1.5" strokeLinecap="round" fill="none" />
 
                 {/* LAPTOP */}
-                {/* Base/trackpad */}
                 <rect x="140" y="241" width="80" height="10" rx="4" fill="#4A5568" />
                 <rect x="155" y="243" width="50" height="6" rx="2" fill="#3A4558" />
-                {/* Screen (open) */}
                 <path d="M143 241 L148 190 L220 190 L220 241 Z" fill="#3A4558" />
-                {/* Screen bezel inner */}
                 <path d="M147 239 L151 194 L217 194 L217 239 Z" fill="#1A2530" />
-                {/* Chart line on screen */}
                 <polyline points="160,228 167,217 175,223 183,211 191,219 199,207 207,214"
                   stroke="#6B8260" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                {/* Screen subtle glow */}
                 <rect x="151" y="194" width="66" height="45" rx="1" fill="#A8C8B8" opacity="0.05" />
-                {/* Hinge line */}
                 <line x1="143" y1="241" x2="220" y2="241" stroke="#2A3040" strokeWidth="1.5" />
 
-                {/* JOURNAL — left of laptop */}
+                {/* JOURNAL */}
                 <rect x="42" y="228" width="54" height="20" rx="4" fill="#F5EDD5" />
-                {/* Spine */}
                 <rect x="42" y="228" width="7" height="20" rx="3" fill="#C96B3F" />
-                {/* Page lines */}
                 <line x1="54" y1="234" x2="92" y2="234" stroke="#E0D4B4" strokeWidth="1.5" />
                 <line x1="54" y1="240" x2="92" y2="240" stroke="#E0D4B4" strokeWidth="1.5" />
                 <line x1="54" y1="246" x2="84" y2="246" stroke="#E0D4B4" strokeWidth="1.5" />
-                {/* Pen resting on journal */}
                 <rect x="93" y="225" width="4" height="22" rx="2" fill="#C8A060" transform="rotate(15 95 236)" />
 
-                {/* MUG — sage-green mug near left arm */}
+                {/* MUG */}
                 <path d="M93 230 L89 248 Q89 252 92 252 L106 252 Q109 252 109 248 L105 230 Z" fill="#C96B3F" />
-                {/* Handle */}
                 <path d="M107 235 Q115 235 115 241 Q115 247 107 247" stroke="#A85530" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-                {/* Rim highlight */}
                 <ellipse cx="99" cy="230" rx="8" ry="3" fill="#D98060" />
-                {/* Steam curls */}
                 <path d="M94 226 Q92 220 94 214" stroke="#D0B090" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5" />
                 <path d="M100 225 Q98 218 100 211" stroke="#D0B090" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.4" />
                 <path d="M106 226 Q104 220 106 214" stroke="#D0B090" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.35" />
 
-                {/* WATER BOTTLE — slim, translucent, between journal and laptop */}
+                {/* WATER BOTTLE */}
                 <rect x="111" y="212" width="16" height="35" rx="6" fill="#A8C8C4" />
                 <rect x="113" y="207" width="12" height="8" rx="4" fill="#88A8A4" />
-                {/* Water fill line */}
                 <rect x="111" y="228" width="16" height="19" rx="0" fill="#88A8A4" opacity="0.3" style={{ borderBottomLeftRadius: '6px', borderBottomRightRadius: '6px' }} />
-                {/* Label */}
                 <rect x="113" y="218" width="10" height="10" rx="2" fill="#78989A" opacity="0.4" />
 
               </svg>
             </div>
 
-            {/* Floating card 1: Routine Score — top right, soft */}
             <div style={{
               position: 'absolute', top: '18px', right: '0px',
               background: '#F9F6F2', border: '1px solid #E8E0D5',
@@ -294,7 +238,6 @@ export default function WelcomePage() {
               <p style={{ fontSize: '0.6rem', color: '#9A8E84', marginTop: '0.375rem' }}>Strong routine day</p>
             </div>
 
-            {/* Floating card 2: One Small Promise — bottom left, soft */}
             <div style={{
               position: 'absolute', bottom: '52px', left: '0px',
               background: '#F9F6F2', border: '1px solid #E8E0D5',
@@ -311,7 +254,6 @@ export default function WelcomePage() {
         </div>
       </section>
 
-      {/* ─── Human truth strip ────────────────────────────────────────────── */}
       <section style={{ background: '#3F503A', padding: '3rem 1.5rem' }}>
         <div style={{ maxWidth: 860, margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
@@ -331,7 +273,6 @@ export default function WelcomePage() {
         </div>
       </section>
 
-      {/* ─── What you track ───────────────────────────────────────────────── */}
       <section style={{ padding: '4.5rem 1.5rem', background: '#FAF8F5' }}>
         <div style={{ maxWidth: 860, margin: '0 auto' }}>
           <div style={{ marginBottom: '2.5rem' }}>
@@ -372,7 +313,6 @@ export default function WelcomePage() {
         </div>
       </section>
 
-      {/* ─── 21-Day Reset overview ────────────────────────────────────────── */}
       <section style={{ padding: '4.5rem 1.5rem', background: '#F3F5F0' }}>
         <div style={{ maxWidth: 860, margin: '0 auto' }}>
           <div style={{ marginBottom: '2.5rem' }}>
@@ -411,7 +351,6 @@ export default function WelcomePage() {
             ))}
           </div>
 
-          {/* CTA */}
           <div style={{ textAlign: 'center' }}>
             <button onClick={handleStart} className="btn-primary" style={{ fontSize: '0.9375rem', padding: '0.875rem 2.25rem' }}>
               {profile ? 'Continue My Reset' : 'Start My 21-Day Reset'}
@@ -423,7 +362,6 @@ export default function WelcomePage() {
         </div>
       </section>
 
-      {/* ─── Features list ────────────────────────────────────────────────── */}
       <section style={{ padding: '4.5rem 1.5rem', background: '#FAF8F5' }}>
         <div style={{ maxWidth: 860, margin: '0 auto', display: 'grid', gap: '1.5rem', gridTemplateColumns: '1fr 1fr' }}>
           <div>
@@ -449,7 +387,6 @@ export default function WelcomePage() {
             </div>
           </div>
 
-          {/* Quote card */}
           <div style={{
             background: 'linear-gradient(145deg, #3F503A 0%, #2E3B2A 100%)',
             borderRadius: '1.5rem',
@@ -473,7 +410,6 @@ export default function WelcomePage() {
         </div>
       </section>
 
-      {/* ─── Disclaimer ───────────────────────────────────────────────────── */}
       <section style={{ padding: '2rem 1.5rem 3rem', background: '#FAF8F5' }}>
         <div style={{ maxWidth: 860, margin: '0 auto' }}>
           <div style={{

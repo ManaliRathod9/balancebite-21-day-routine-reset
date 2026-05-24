@@ -34,7 +34,6 @@ export default function RoutineScoreCard({ score, date, compact = false }) {
       boxShadow: '0 2px 10px rgba(60,40,20,0.07)',
     }} className="fade-in">
 
-      {/* Ring */}
       <div style={{ position: 'relative', flexShrink: 0, width: svgSize, height: svgSize }}>
         <svg width={svgSize} height={svgSize} style={{ transform: 'rotate(-90deg)' }}>
           <circle cx={svgSize/2} cy={svgSize/2} r={radius}
@@ -57,7 +56,6 @@ export default function RoutineScoreCard({ score, date, compact = false }) {
         </div>
       </div>
 
-      {/* Info */}
       <div style={{ textAlign: compact ? 'left' : 'center', flex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.25rem', justifyContent: compact ? 'flex-start' : 'center' }}>
           <span style={{ fontSize: compact ? '1rem' : '1.25rem' }}>{EMOJI_MAP[status.label] || '🌱'}</span>

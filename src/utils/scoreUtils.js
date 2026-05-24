@@ -1,4 +1,3 @@
-// ─── Routine Score Calculator (out of 100) ───────────────────────────────────
 export const calculateScore = (entry) => {
   if (!entry) return 0;
   let score = 0;
@@ -54,7 +53,6 @@ export const calculateScore = (entry) => {
   return Math.max(0, Math.min(score, 100));
 };
 
-// ─── Score Status Label & Colors ─────────────────────────────────────────────
 export const getScoreStatus = (score) => {
   if (score >= 80) return {
     label: 'Strong Routine',
@@ -94,7 +92,6 @@ export const getScoreStatus = (score) => {
   };
 };
 
-// ─── Average from entries ─────────────────────────────────────────────────────
 export const avg = (entries, key) => {
   if (!entries.length) return 0;
   const vals = entries.map((e) => Number(e[key]) || 0);
@@ -106,8 +103,6 @@ export const avgScore = (entries) => {
   return +(entries.reduce((a, e) => a + (e.routineScore || 0), 0) / entries.length).toFixed(1);
 };
 
-// ─── Average time string from entries ────────────────────────────────────────
-// Returns a human-readable average time like "7:30 AM" or "Not logged"
 export const avgTimeStr = (entries, key) => {
   const times = entries.map((e) => e[key]).filter(Boolean);
   if (!times.length) return 'Not logged';
@@ -129,7 +124,7 @@ export const modeValue = (entries, key) => {
   return Object.entries(freq).sort((a, b) => b[1] - a[1])[0]?.[0] || '';
 };
 
-// Mode value that handles both array fields (new) and legacy string fields (old)
+// Handles both array fields (new) and legacy single-string fields (old)
 export const modeValueArr = (entries, arrayKey, legacyKey = '') => {
   const freq = {};
   entries.forEach((e) => {

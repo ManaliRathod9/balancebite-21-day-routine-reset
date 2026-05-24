@@ -254,8 +254,6 @@ export function SleepQualityChart({ entries }) {
   );
 }
 
-// ─── Individual trend charts ──────────────────────────────────────────────────
-
 export function StressChart({ entries }) {
   const data = entries.map((e, i) => ({ day: i + 1, stress: +e.stressLevel || 0 }));
   return (
@@ -331,8 +329,6 @@ export function SleepHoursChart({ entries }) {
   );
 }
 
-// ─── Meal timing trend (time as decimal hours) ────────────────────────────────
-
 export function MealTimingTrendChart({ entries }) {
   const toDecimal = (t) => {
     if (!t) return null;
@@ -397,8 +393,6 @@ export function MealTimingTrendChart({ entries }) {
   );
 }
 
-// ─── Habit summary (horizontal bar) ──────────────────────────────────────────
-
 export function HabitSummaryChart({ entries }) {
   if (!entries.length) return null;
   const total = entries.length;
@@ -442,8 +436,6 @@ export function HabitSummaryChart({ entries }) {
     </ChartCard>
   );
 }
-
-// ─── Distribution donuts ──────────────────────────────────────────────────────
 
 const DONUT_COLORS = [
   '#6B8260', '#C96B3F', '#5A7FA8', '#8A68BA',
@@ -521,7 +513,6 @@ export function SleepQualityDonutChart({ entries }) {
   );
 }
 
-/* ── Generic wrapper ── */
 export default function ChartCard({ title, subtitle, icon, children }) {
   return (
     <div className="card">

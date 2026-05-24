@@ -85,7 +85,6 @@ export default function BackupRestore() {
         </div>
       )}
 
-      {/* Download */}
       <InfoSection icon="⬇️" title="Download Backup" desc="Save all your data as a JSON file.">
         <p style={{ fontSize: '0.875rem', color: '#5C5249', lineHeight: 1.7, marginBottom: '1rem' }}>
           This exports your <strong style={{ color: '#3A3530' }}>profile, all check-in entries, challenge progress, letter to self, badges, and reports</strong>.
@@ -99,7 +98,6 @@ export default function BackupRestore() {
         </button>
       </InfoSection>
 
-      {/* Upload */}
       <InfoSection icon="⬆️" title="Restore from Backup" desc="Upload a previously downloaded file to restore your data.">
         <p style={{ fontSize: '0.875rem', color: '#5C5249', lineHeight: 1.7, marginBottom: '1rem' }}>
           Choose the JSON file you downloaded from BalanceBite.
@@ -114,7 +112,6 @@ export default function BackupRestore() {
         <input ref={fileRef} type="file" accept=".json" style={{ display: 'none' }} onChange={handleUpload} />
       </InfoSection>
 
-      {/* Transfer between devices */}
       <InfoSection icon="📱" title="Use on Another Device" desc="Transfer your tracking data to any browser or device.">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           {[
@@ -135,7 +132,6 @@ export default function BackupRestore() {
         </div>
       </InfoSection>
 
-      {/* Privacy */}
       <div style={{ background: '#EEF4FA', border: '1px solid #B8D0E8', borderRadius: '1.25rem', padding: '1.25rem', marginBottom: '1.125rem' }}>
         <h3 style={{ fontWeight: 700, color: '#3A5570', fontSize: '0.875rem', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           🔒 Your Data Privacy
@@ -155,7 +151,6 @@ export default function BackupRestore() {
         </ul>
       </div>
 
-      {/* Clear all */}
       <div className="card" style={{ borderColor: '#F4CCCA' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem', marginBottom: '1rem' }}>
           <span style={{ fontSize: '1.375rem', flexShrink: 0 }}>🗑️</span>

@@ -1,4 +1,3 @@
-// ─── Storage Keys ───────────────────────────────────────────────────────────
 export const KEYS = {
   PROFILE: 'balanceBiteProfile',
   ENTRIES: 'balanceBiteEntries',
@@ -9,7 +8,6 @@ export const KEYS = {
   BADGES: 'balanceBiteBadges',
 };
 
-// ─── Generic Helpers ─────────────────────────────────────────────────────────
 export const save = (key, value) => {
   try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { console.error('Storage save error', e); }
 };
@@ -23,11 +21,9 @@ export const load = (key, fallback = null) => {
 
 export const remove = (key) => localStorage.removeItem(key);
 
-// ─── Profile ─────────────────────────────────────────────────────────────────
 export const saveProfile = (profile) => save(KEYS.PROFILE, profile);
 export const loadProfile = () => load(KEYS.PROFILE);
 
-// ─── Entries ─────────────────────────────────────────────────────────────────
 export const loadEntries = () => load(KEYS.ENTRIES, []);
 
 export const saveEntry = (entry) => {
@@ -43,7 +39,6 @@ export const getEntryByDate = (date) => {
   return loadEntries().find((e) => e.date === date) || null;
 };
 
-// ─── Challenge ───────────────────────────────────────────────────────────────
 export const loadChallenge = () => load(KEYS.CHALLENGE);
 
 export const saveChallenge = (data) => save(KEYS.CHALLENGE, data);
@@ -65,11 +60,9 @@ export const getChallengeDay = () => {
   return Math.min(diff, 21);
 };
 
-// ─── Letter to Self ──────────────────────────────────────────────────────────
 export const saveLetter = (letter) => save(KEYS.LETTER, letter);
 export const loadLetter = () => load(KEYS.LETTER, { day1: '', day21: '' });
 
-// ─── Badges ──────────────────────────────────────────────────────────────────
 export const loadBadges = () => load(KEYS.BADGES, []);
 export const saveBadges = (badges) => save(KEYS.BADGES, badges);
 
@@ -82,7 +75,6 @@ export const addBadge = (badge) => {
   return badges;
 };
 
-// ─── Full Backup ─────────────────────────────────────────────────────────────
 export const exportBackup = () => ({
   exportedAt: new Date().toISOString(),
   version: '1.0',

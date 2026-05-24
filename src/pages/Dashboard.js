@@ -63,7 +63,6 @@ export default function Dashboard() {
   return (
     <div className="page-wrapper fade-in">
 
-      {/* Header */}
       <div style={{ marginBottom: '2rem' }}>
         <h1 className="section-title">Dashboard</h1>
         <p className="page-subtitle">
@@ -71,7 +70,6 @@ export default function Dashboard() {
         </p>
       </div>
 
-      {/* 21-day progress bar */}
       {challenge && (
         <div className="card" style={{ marginBottom: '1.25rem' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1rem' }}>
@@ -112,7 +110,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Latest score */}
       {latestEntry && (
         <div style={{ marginBottom: '1.25rem' }}>
           <p style={{ fontSize: '0.7rem', fontWeight: 700, color: '#9A8E84', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.625rem' }}>
@@ -123,7 +120,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Tabs */}
       <div style={{
         display: 'flex', gap: '0.25rem', background: '#F2EDE7',
         borderRadius: '1rem', padding: '0.25rem', marginBottom: '1.25rem',
@@ -144,7 +140,6 @@ export default function Dashboard() {
         ))}
       </div>
 
-      {/* Overview */}
       {activeTab === 'overview' && (
         <div className="fade-in">
           {entries.length === 0 ? (
@@ -187,7 +182,6 @@ export default function Dashboard() {
               <StatCard label="Common Reason" value={modeValue(entries.filter(e=>e.eatingRoutineChangedReason),'eatingRoutineChangedReason')||'None logged'} icon="💬" iconBg="#F7F4FB" iconColor="#6F519E" sub="why routine shifted" />
             </div>
 
-            {/* Eating routine gentle insight */}
             {(() => {
               const followedDays    = entries.filter(e => e.followedEatingRoutineToday === 'Yes').length;
               const partialDays     = entries.filter(e => e.followedEatingRoutineToday === 'Partially').length;
@@ -263,7 +257,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Charts */}
       {activeTab === 'charts' && (
         <div className="fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {entries.length < 2 ? (
@@ -273,7 +266,6 @@ export default function Dashboard() {
             </div>
           ) : (
             <>
-              {/* Performance trends */}
               <p style={{ fontSize: '0.68rem', fontWeight: 700, color: '#B0A89E', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '-0.25rem' }}>
                 Performance Trends
               </p>
@@ -282,13 +274,11 @@ export default function Dashboard() {
               <FocusChart entries={entries} />
               <SleepHoursChart entries={entries} />
 
-              {/* Sleep detail */}
               <p style={{ fontSize: '0.68rem', fontWeight: 700, color: '#B0A89E', textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: '0.25rem', marginBottom: '-0.25rem' }}>
                 Sleep Detail
               </p>
               <SleepQualityChart entries={entries} />
 
-              {/* Meal patterns */}
               <p style={{ fontSize: '0.68rem', fontWeight: 700, color: '#B0A89E', textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: '0.25rem', marginBottom: '-0.25rem' }}>
                 Meal Patterns
               </p>
@@ -296,14 +286,12 @@ export default function Dashboard() {
               <MealConsistencyChart entries={entries} />
               <MealTimingChart entries={entries} />
 
-              {/* Habit overview */}
               <p style={{ fontSize: '0.68rem', fontWeight: 700, color: '#B0A89E', textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: '0.25rem', marginBottom: '-0.25rem' }}>
                 Habit Overview
               </p>
               <HabitSummaryChart entries={entries} />
               <ActivityMoodChart entries={entries} />
 
-              {/* Distributions */}
               <p style={{ fontSize: '0.68rem', fontWeight: 700, color: '#B0A89E', textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: '0.25rem', marginBottom: '-0.25rem' }}>
                 Distributions
               </p>
@@ -317,7 +305,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Insights */}
       {activeTab === 'insights' && (
         <div className="fade-in">
           {insights.length > 0 ? (
@@ -342,14 +329,12 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Badges */}
       {activeTab === 'badges' && (
         <div className="fade-in">
           <BadgeCard badges={badges} />
         </div>
       )}
 
-      {/* Quick actions */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginTop: '1.5rem' }}>
         <button onClick={() => navigate('/check-in')} className="btn-primary" style={{ padding: '0.8125rem' }}>
           ✅ Check-In

@@ -32,7 +32,6 @@ export default function SymptomInsight() {
   return (
     <div className="page-wrapper fade-in">
 
-      {/* Header */}
       <div style={{ marginBottom: '2.5rem' }}>
         <div className="step-pill">Step 2 of 3</div>
         <h1 className="section-title">What have you been experiencing?</h1>
@@ -43,7 +42,6 @@ export default function SymptomInsight() {
 
       {!insights ? (
         <>
-          {/* Symptom chips */}
           <div className="card" style={{ marginBottom: '1.5rem' }}>
             <p style={{ fontSize: '0.8rem', color: '#9A8E84', marginBottom: '1rem', lineHeight: 1.55 }}>
               Tap any symptom or struggle you have noticed in the past week or two. You can always update this.
@@ -66,7 +64,6 @@ export default function SymptomInsight() {
             )}
           </div>
 
-          {/* Disclaimer */}
           <div style={{
             background: '#FFF9F0', border: '1px solid #F4D9A8',
             borderRadius: '1rem', padding: '0.875rem 1rem',
@@ -85,7 +82,6 @@ export default function SymptomInsight() {
       ) : (
         <div className="fade-in">
 
-          {/* Intro callout */}
           <div style={{
             background: '#F3F5F0', border: '1px solid #C8D5C0',
             borderRadius: '1.25rem', padding: '1rem 1.25rem',
@@ -103,7 +99,6 @@ export default function SymptomInsight() {
             </div>
           </div>
 
-          {/* Insight cards */}
           {insights.map((ins, i) => (
             <div key={i} className="card" style={{ marginBottom: '1rem', borderLeft: '3px solid #869F78' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '1rem' }}>
@@ -138,7 +133,6 @@ export default function SymptomInsight() {
             </div>
           ))}
 
-          {/* Disclaimer */}
           <div style={{
             background: '#FFF9F0', border: '1px solid #F4D9A8',
             borderRadius: '1rem', padding: '0.875rem 1rem',

@@ -24,7 +24,6 @@ export default function Navbar() {
       <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 1.25rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', height: '3.75rem', gap: '1.5rem' }}>
 
-          {/* Logo */}
           <button
             onClick={() => navigate('/')}
             style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'none', border: 'none', cursor: 'pointer', padding: 0, flexShrink: 0 }}
@@ -42,7 +41,6 @@ export default function Navbar() {
             </span>
           </button>
 
-          {/* Desktop nav links */}
           <nav style={{ display: 'none', alignItems: 'center', gap: '0.125rem', flex: 1 }} className="desktop-nav">
             {NAV_LINKS.map(({ to, label }) => (
               <NavLink
@@ -68,7 +66,6 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Day progress pill */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginLeft: 'auto', flexShrink: 0 }}>
             {day && (
               <div className="day-badge">
@@ -77,7 +74,6 @@ export default function Navbar() {
               </div>
             )}
 
-            {/* Hamburger (mobile) */}
             <button
               className="mobile-menu-btn"
               onClick={() => setMenuOpen(v => !v)}
@@ -95,7 +91,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile dropdown */}
         {menuOpen && (
           <div style={{ paddingBottom: '1rem' }} className="fade-in">
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.375rem' }}>
@@ -124,7 +119,6 @@ export default function Navbar() {
         )}
       </div>
 
-      {/* Responsive show/hide */}
       <style>{`
         @media (min-width: 768px) {
           .desktop-nav { display: flex !important; }
